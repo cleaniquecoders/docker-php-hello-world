@@ -12,6 +12,7 @@ This is a typical Hello World for PHP in Docker.
     - [Running the Container in Background](#running-the-container-in-background)
     - [Listing All the Running Containers](#listing-all-the-running-containers)
     - [Stopping the containers](#stopping-the-containers)
+  - [Build Image with Arguments](#build-image-with-arguments)
 
 ## Usage
 
@@ -73,4 +74,49 @@ CONTAINER ID   IMAGE                                                 COMMAND    
 
 ```bash
 docker stop <container-id/name>
+```
+
+## Build Image with Arguments
+
+Update the Dockerfile as following:
+
+```dockerfile
+ARG PHP_VERSION=8.2
+FROM php:${PHP_VERSION}-apache
+
+COPY . /var/www/html
+
+EXPOSE 80
+```
+
+Then build based on the PHP version:
+
+```bash
+docker build --build-arg PHP_VERSION=7.4 -t hello-world:php7.4 .
+```
+
+You can verify the image exists:
+
+```bash
+docker images | grep hello-world
+```
+
+You can create for the rest of the PHP versions:
+
+```bash
+docker build --build-arg PHP_VERSION=8.0 -t hello-world:php8.0 .
+docker build --build-arg PHP_VERSION=8.1 -t hello-world:php8.1 .
+docker build --build-arg PHP_VERSION=8.2 -t hello-world:php8.2 .
+docker build -t hello-world .
+```
+
+Check again the Docker images:
+
+```bash
+$ docker images | grep hello-world
+hello-world                                      latest                         b061b7b40c71   37 seconds ago   513MB
+hello-world                                      php8.2                         b061b7b40c71   37 seconds ago   513MB
+hello-world                                      php8.1                         6fc6b148bfee   38 seconds ago   512MB
+hello-world                                      php8.0                         f6a65a5c2d51   39 seconds ago   426MB
+hello-world                                      php7.4                         fd9896b50cbd   40 seconds ago   422MB
 ```
