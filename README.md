@@ -13,6 +13,7 @@ This is a typical Hello World for PHP in Docker.
     - [Listing All the Running Containers](#listing-all-the-running-containers)
     - [Stopping the containers](#stopping-the-containers)
   - [Build Image with Arguments](#build-image-with-arguments)
+  - [Running Multi-Containers with Docker Compose](#running-multi-containers-with-docker-compose)
 
 ## Usage
 
@@ -119,4 +120,69 @@ hello-world                                      php8.2                         
 hello-world                                      php8.1                         6fc6b148bfee   38 seconds ago   512MB
 hello-world                                      php8.0                         f6a65a5c2d51   39 seconds ago   426MB
 hello-world                                      php7.4                         fd9896b50cbd   40 seconds ago   422MB
+```
+
+## Running Multi-Containers with Docker Compose
+
+Docker compose allows us to configure and run the multi-containers.
+
+Create `docker-compose.yml` and add the following:
+
+```yaml
+version: '3.8'
+
+services:
+  php7.4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 7.4
+    image: hello-world:php7.4
+    ports:
+      - "8080:80"
+
+  php8.0:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 8.0
+    image: hello-world:php8.0
+    ports:
+      - "8081:80"
+
+  php8.1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 8.1
+    image: hello-world:php8.1
+    ports:
+      - "8082:80"
+
+  php8.2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 8.2
+    image: hello-world:php8.2
+    ports:
+      - "8083:80"
+```
+
+The above `docker-compose.yml` file simply run all the available PHP version available for the application.
+
+To run the `docker-compose.yml`, simply run:
+
+```bash
+docker-compose up
+```
+
+Run as `daemon`:
+
+```bash
+docker-compose up -d
 ```
