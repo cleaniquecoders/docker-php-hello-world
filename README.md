@@ -27,7 +27,7 @@ Then navigate to directory and build the image:
 
 ```bash
 cd docker-php-hello-world/
-docker docker build -t hello-world .
+docker build -t hello-world .
 ```
 
 > `t` argument used for tagging the image.
@@ -68,7 +68,7 @@ Will output the following:
 
 ```bash
 CONTAINER ID   IMAGE                                                 COMMAND                  CREATED          STATUS                PORTS                                                            NAMES
-1a77e445027b   hello-world                                           "docker-php-entrypoi…"   56 seconds ago   Up 55 seconds         0.0.0.0:80->80/tcp                                               angry_taussig
+1a77e445027b   **hello**-world                                           "docker-php-entrypoi…"   56 seconds ago   Up 55 seconds         0.0.0.0:80->80/tcp                                               angry_taussig
 ```
 
 ### Stopping the containers

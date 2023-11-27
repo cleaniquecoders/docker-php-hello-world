@@ -1,7 +1,7 @@
 #!/bin/bash
 
+docker build --build-arg PHP_VERSION=5.6 -t hello-world:php5.6 .
 docker build --build-arg PHP_VERSION=7.4 -t hello-world:php7.4 .
 docker build --build-arg PHP_VERSION=8.0 -t hello-world:php8.0 .
 docker build --build-arg PHP_VERSION=8.1 -t hello-world:php8.1 .
-docker build --build-arg PHP_VERSION=8.2 -t hello-world:php8.2 .
 docker build -t hello-world .
