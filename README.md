@@ -185,4 +185,11 @@ Run as `daemon`:
 
 ```bash
 docker-compose up -d
+```****
+
+Run `docker-compose` with custom `.env`:
+
+```bash
+docker-compose --env-file ./.env.dev up -d
+docker-compose --env-file ./.env.staging up -d
 ```
