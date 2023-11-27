@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  php5.6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 5.6
+    image: hello-world:php5.6
+    ports:
+      - "8056:80"
+
   php7.4:
     build:
       context: .
@@ -9,7 +19,7 @@ services:
         PHP_VERSION: 7.4
     image: hello-world:php7.4
     ports:
-      - "8080:80"
+      - "8074:80"
 
   php8.0:
     build:
@@ -19,7 +29,7 @@ services:
         PHP_VERSION: 8.0
     image: hello-world:php8.0
     ports:
-      - "8081:80"
+      - "8080:80"
 
   php8.1:
     build:
@@ -29,14 +39,12 @@ services:
         PHP_VERSION: 8.1
     image: hello-world:php8.1
     ports:
-      - "8082:80"
+      - "8081:80"
 
   php8.2:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        PHP_VERSION: 8.2
-    image: hello-world:php8.2
+    image: hello-world
     ports:
-      - "8083:80"
+      - "8082:80"
