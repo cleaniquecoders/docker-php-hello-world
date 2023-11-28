@@ -4,7 +4,7 @@ services:
   php5.6:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         PHP_VERSION: 5.6
     image: hello-world:php5.6
@@ -14,7 +14,7 @@ services:
   php7.4:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         PHP_VERSION: 7.4
     image: hello-world:php7.4
@@ -24,7 +24,7 @@ services:
   php8.0:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         PHP_VERSION: 8.0
     image: hello-world:php8.0
@@ -34,7 +34,7 @@ services:
   php8.1:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         PHP_VERSION: 8.1
     image: hello-world:php8.1
@@ -44,7 +44,15 @@ services:
   php8.2:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: hello-world
+      dockerfile: docker/Dockerfile
+    image: hello-world:php8.2
     ports:
-      - "${PHP_APP_PORT:-8082}:80"
+      - "${PHP82_APP_PORT:-8082}:80"
+
+  php8.3:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: hello-world:php8.3
+    ports:
+      - "${PHP83_APP_PORT:-8083}:80"
