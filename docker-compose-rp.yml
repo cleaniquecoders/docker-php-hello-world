@@ -10,8 +10,19 @@ services:
       - ./docker/default.conf:/etc/nginx/conf.d/default.conf
     links:
       - app
+    networks:
+      - frontend
 
   app:
     image: php:8.3-fpm-alpine
     volumes:
       - ./src:/var/www/html
+    networks:
+      - frontend
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
