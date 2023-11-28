@@ -56,3 +56,5 @@ services:
     image: hello-world:php8.3
     ports:
       - "${PHP83_APP_PORT:-8083}:80"
+    volumes:
+      - ./src:/var/www/html
